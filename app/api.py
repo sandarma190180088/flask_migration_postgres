@@ -1,4 +1,4 @@
-from app import api,Resource,User,ma,request,db
+from app import api,Resource,User,ma,request,db,make_response
 
 # create mapping object dari sqlalchemy
 class UserSchema(ma.Schema):
@@ -12,7 +12,8 @@ users_schema = UserSchema(many=True)
 class User_(Resource):
     def get(self):
         q = User.query.all()
-        return users_schema.dump(q)
+        a = users_schema.dump(q)
+        return make_response(a,404)
     def post(self):
         username = request.form.get("username")
         password = request.form.get("password")

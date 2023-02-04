@@ -1,8 +1,8 @@
-"""membuattabel user
+"""add
 
-Revision ID: fac7a7f8b449
+Revision ID: 2f67b638ab5b
 Revises: 
-Create Date: 2023-01-27 14:25:32.433923
+Create Date: 2023-02-04 09:37:48.646833
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fac7a7f8b449'
+revision = '2f67b638ab5b'
 down_revision = None
 branch_labels = None
 depends_on = None
