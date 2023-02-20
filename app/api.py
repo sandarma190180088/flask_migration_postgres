@@ -1,9 +1,9 @@
-from app import api,Resource,User,ma,request,db,make_response
+from app import api,Resource,User,ma,request,db,make_response,jsonify
 
 # create mapping object dari sqlalchemy
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ("username","password","created_at")
+        fields = ("username","password","created_at","id")
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
@@ -11,9 +11,12 @@ users_schema = UserSchema(many=True)
 
 class User_(Resource):
     def get(self):
-        q = User.query.all()
-        a = users_schema.dump(q)
-        return make_response(a,404)
+        
+        data = [user.to_json_serializeable() for user in User.query.all() ]
+        
+        return data,200
+        
+        
     def post(self):
         username = request.form.get("username")
         password = request.form.get("password")
